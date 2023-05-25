@@ -1,3 +1,6 @@
+use arrow_game::show_menu;
+
+
 fn main() {
-    println!("Hello, world!");
+    show_menu();   
 }
