@@ -1,0 +1,11 @@
+/Users/michaelcarchesio/Documents/arrow_game/server/target/debug/deps/cookie-81205fce77494963.rmeta: /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/lib.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/builder.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/parse.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/jar.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/delta.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/draft.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/expiration.rs
+
+/Users/michaelcarchesio/Documents/arrow_game/server/target/debug/deps/cookie-81205fce77494963.d: /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/lib.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/builder.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/parse.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/jar.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/delta.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/draft.rs /Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/expiration.rs
+
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/lib.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/builder.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/parse.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/jar.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/delta.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/draft.rs:
+/Users/michaelcarchesio/.cargo/registry/src/github.com-1ecc6299db9ec823/cookie-0.16.2/src/expiration.rs:
