@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 macroquad = "0.3"
-specs = "0.18.0"
+specs = { version = "0.18.0", features = ["specs-derive"] }
