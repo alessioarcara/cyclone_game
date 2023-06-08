@@ -1,3 +1,4 @@
+use macroquad::texture::Texture2D;
 use specs::{Component, VecStorage };
 
 #[derive(Debug, Component, Clone, Copy)]
@@ -11,7 +12,7 @@ pub struct Position {
 #[derive(Component)]
 #[storage(VecStorage)]
 pub struct Renderable {
-    pub path: String,
+    pub texture: Texture2D,
 }
 
 #[derive(Component)]

@@ -7,9 +7,9 @@ use specs::{World, WorldExt};
 async fn main() {
     let mut world = World::new();
     register_components(&mut world);
-    initialize_level(&mut world);
-    let game = Game::new(world);
+    initialize_level(&mut world).await;
 
+    let game = Game::new(world);
     loop {
         game.update();
         game.draw();

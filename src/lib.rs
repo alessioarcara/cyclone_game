@@ -2,6 +2,7 @@ use core::panic;
 
 use components::{Position, Renderable, Player, Wall};
 use entities::{create_floor, create_wall};
+use macroquad::texture::load_texture;
 use specs::{World, WorldExt, RunNow};
 use systems::RenderingSystem;
 
@@ -17,13 +18,13 @@ pub fn register_components(world: &mut World) {
 }
 
 pub struct Game {
-    world: World
+    world: World,
 }
 
 impl Game {
     pub fn new(world: World) -> Self {
         Self {
-            world
+            world,
         }
     }
 
@@ -39,11 +40,11 @@ impl Game {
     }
 }
 
-pub fn initialize_level(world: &mut World) {
+pub async fn initialize_level(world: &mut World) {
     const MAP: &str = "
     W W W W W W W W
     W . . . . . . W
-    W . . . . . . W
+    W . P . . . . W
     W . . . . . . W 
     W . . . . . . W
     W . . . . . . W
@@ -51,10 +52,12 @@ pub fn initialize_level(world: &mut World) {
     W . . . . . . W
     W W W W W W W W
     ";
-    load_map(world, MAP.to_string());
+    load_map(world, MAP.to_string()).await;
 }
 
-pub fn load_map(world: &mut World, map_string: String) {
+pub async fn load_map(world: &mut World, map_string: String) {
+    let wall_texture = load_texture("../resources/wall.png").await.expect("Failed to load resource");
+    let floor_texture = load_texture("../resources/floor.png").await.expect("Failed to load resource");
     let rows: Vec<&str> = map_string.trim().split('\n').map(|x| x.trim()).collect();
 
     for (y, &row) in rows.iter().enumerate() {
@@ -64,8 +67,8 @@ pub fn load_map(world: &mut World, map_string: String) {
             let position = Position { x: x as f32, y: y as f32, z: 0 };
 
            match column {
-                "." => create_floor(world, position),
-                "W" => create_wall(world, position),
+                "." => create_floor(world, position, floor_texture),
+                "W" => create_wall(world, position, wall_texture),
                 _ => panic!("unrecognized map item")
             } 
         }

@@ -19,13 +19,15 @@ impl<'a> System<'a> for RenderingSystem {
         rendering_data.sort_by_key(|&k| k.0.z);
 
         for (&position, renderable) in rendering_data.iter() {
-            let color = match renderable.path.as_str(){
-                "wall" => BLUE,
-                "floor" => RED,
-                _ => BLACK
-            };
-
-            draw_rectangle(position.x * TILE_SIZE, position.y * TILE_SIZE, TILE_SIZE, TILE_SIZE, color);
+            let x = position.x * TILE_SIZE;
+            let y = position.y * TILE_SIZE;
+            
+            draw_texture(
+                renderable.texture, 
+                x,
+                y,
+                WHITE, 
+            )
         }
     }
 }
