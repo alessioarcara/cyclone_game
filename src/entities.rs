@@ -1,7 +1,7 @@
 use macroquad::texture::Texture2D;
 use specs::{World, WorldExt, Builder};
 
-use crate::components::{Position, Wall, Renderable};
+use crate::components::{Position, Wall, Renderable, Player};
 
 pub fn create_wall(world: &mut World, position: Position, texture: Texture2D) {
     world 
@@ -17,5 +17,14 @@ pub fn create_floor(world: &mut World, position: Position, texture: Texture2D) {
         .create_entity()
         .with(position)
         .with(Renderable { texture })
+        .build();
+}
+
+pub fn create_player(world: &mut World, position: Position, texture: Texture2D) {
+    world 
+        .create_entity()
+        .with(position)
+        .with(Renderable { texture })
+        .with(Player {})
         .build();
 }
