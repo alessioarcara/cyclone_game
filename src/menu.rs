@@ -1,4 +1,4 @@
-use super::GameObject;
+use super::{GameObject, game::Game, Resources};
 use macroquad::prelude::*;
 
 enum MenuOption {
@@ -17,7 +17,7 @@ impl MenuOption {
 
 pub struct Menu {
     options: Vec<MenuOption>,
-    selected_index: usize
+    selected_index: usize,
 }
 
 impl Menu {
@@ -30,17 +30,22 @@ impl Menu {
 }
 
 impl GameObject for Menu {
-    fn input(&mut self) {
+    fn input(&mut self) -> Option<Box<dyn GameObject>> {
         if is_key_pressed(KeyCode::Up) {
             self.selected_index = (self.selected_index + self.options.len() - 1) % self.options.len();
         } else if is_key_pressed(KeyCode::Down) {
             self.selected_index = (self.selected_index + 1) % self.options.len();
+        } else if is_key_pressed(KeyCode::Enter) {
+            match self.options[self.selected_index] {
+                _ => return Some(Box::new(Game::new())),
+            }
         }
+        None
     }
 
     fn update(&self) {}
 
-    fn draw(&self) {
+    fn draw(&self, _resources: &Resources) {
         clear_background(BLACK);
 
         let (screen_width, screen_height) = (screen_width(), screen_height());
