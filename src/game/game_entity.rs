@@ -1,5 +1,7 @@
 use macroquad::prelude::*;
 
+use super::GameObject;
+
 pub struct Position (pub usize, pub usize, pub usize);
 
 pub struct Entity {
