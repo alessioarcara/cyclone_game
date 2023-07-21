@@ -1,5 +1,6 @@
-use super::{GameObject, game::Game, Resources};
+use super::{GameObject, game::Game};
 use macroquad::prelude::*;
+use macroquad_tiled::Map;
 
 enum MenuOption {
     HostGame,
@@ -30,7 +31,7 @@ impl Menu {
 }
 
 impl GameObject for Menu {
-    fn input(&mut self) -> Option<Box<dyn GameObject>> {
+    fn update(&mut self, _map: &Map) -> Option<Box<dyn GameObject>> {
         if is_key_pressed(KeyCode::Up) {
             self.selected_index = (self.selected_index + self.options.len() - 1) % self.options.len();
         } else if is_key_pressed(KeyCode::Down) {
@@ -43,9 +44,7 @@ impl GameObject for Menu {
         None
     }
 
-    fn update(&self) {}
-
-    fn draw(&self, _resources: &Resources) {
+    fn draw(&self, _map: &Map) {
         clear_background(BLACK);
 
         let (screen_width, screen_height) = (screen_width(), screen_height());

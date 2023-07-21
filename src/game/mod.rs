@@ -1,60 +1,66 @@
 pub mod game_entity;
+pub mod player;
 
-use super::{GameObject, Resources};
-use game_entity::{Position, Entity};
+use self::player::Player;
+
+use super::GameObject;
+use game_entity::Position;
+use macroquad::prelude::Rect;
+use macroquad_tiled::Map;
 
 pub struct Game {
-    world_entities: Vec<Entity>,
+    // world_entities: Vec<Entity>,
+    player: Player
 }
 
 impl Game  {
     pub fn new() -> Self {
-        let world_entities = create_entities("
-            W W W W W W W W
-            W . . . . . . W
-            W . . . . . . W
-            W . . . . . . W 
-            W . . P . . . W
-            W . . . . . . W
-            W . . . . . . W
-            W . . . . . . W
-            W W W W W W W W
-            ");
+        //let world_entities = create_entities("
+        //    W W W W W W W W
+        //    W . . . . . . W
+        //    W . . . . . . W
+        //    W . . . . . . W 
+        //    W . . P . . . W
+        //    W . . . . . . W
+        //    W . . . . . . W
+        //    W . . . . . . W
+        //    W W W W W W W W
+        //    ");
 
         Self {
-            world_entities,
+            // world_entities,
+            player: Player { position: Position(160, 160, 1) }
         }
     }
 }
 
 impl GameObject for Game {
-    fn input(&mut self) -> Option<Box<dyn GameObject>> {
-        None
+    fn update(&mut self, map: &Map) -> Option<Box<dyn GameObject>> {
+        self.player.update(map)
     }
 
-    fn update(&self) {
-
-    }
-
-    fn draw(&self, resources: &Resources) {
-        self.world_entities.iter().for_each(|e| e.draw(&resources));
+    fn draw(&self, map: &Map) {
+        map.draw_tiles("Tile Layer 1", Rect::new(0.0, 0.0, 320.0, 320.0), None);
+        self.player.draw(map);
+        map.draw_tiles("Tile Layer 2", Rect::new(0.0, 0.0, 320.0, 320.0), None);
+        // self.world_entities.iter().for_each(|e| e.draw(&map));
     }
 }
 
-fn create_entities(map_string: &str) -> Vec<Entity> {
-    let mut entities = Vec::new();
-
-    for (y, row) in map_string.trim().split('\n').enumerate() {
-        for (x, column) in row.trim().split(' ').enumerate() {
-            let position = Position(x, y, 0);
-            let kind = match column {
-                "W" => "wall",
-                "." => "floor",
-                "P" => "player",
-                _ => panic!("Unrecognized map item"),
-            };
-            entities.push(Entity { position, kind })
-        }
-    }
-    entities
-}
+//fn create_entities(map_string: &str) -> Vec<Entity> {
+//    let mut entities = Vec::new();
+//
+//    for (y, row) in map_string.trim().split('\n').enumerate() {
+//        for (x, column) in row.trim().split(' ').enumerate() {
+//            let position = Position(x, y, 0);
+//            let kind = match column {
+//                "W" => "wall",
+//                "." => "floor",
+//                "P" => "player",
+//                _ => panic!("Unrecognized map item"),
+//            };
+//            entities.push(Entity { position, kind })
+//        }
+//    }
+//    entities
+//}

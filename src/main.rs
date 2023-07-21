@@ -1,16 +1,15 @@
 use std::error::Error;
-use arrow_game::{GameObject, GameManager, load_resources};
+use arrow_game::{GameObject, GameManager, load_tilemap};
 use macroquad::prelude::*;
 
-#[macroquad::main("Arrow Game")]
+#[macroquad::main("Cyclone Combat")]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let resources = load_resources().await?;
+    let map = load_tilemap().await?;
     let mut manager = GameManager::new();
 
     loop {
-        manager.input();
-        manager.update();
-        manager.draw(&resources);
+        manager.update(&map);
+        manager.draw(&map);
         next_frame().await;
     } 
 }

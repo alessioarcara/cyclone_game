@@ -2,24 +2,27 @@ pub mod game_manager;
 pub mod game;
 pub mod menu;
 
-use std::collections::HashMap;
-use macroquad::prelude::*;
+use macroquad::{prelude::*, Error};
 pub use game_manager::GameManager;
-
-type Resources = HashMap<&'static str, Texture2D>;
+use macroquad_tiled::Map;
 
 pub trait GameObject {
-    fn input(&mut self) -> Option<Box<dyn GameObject>>;
-    fn update(&self);
-    fn draw(&self, resources: &Resources);
+    fn update(&mut self, map: &Map) -> Option<Box<dyn GameObject>>;
+    fn draw(&self, map: &Map);
 }
 
-pub async fn load_resources() -> Result<Resources, FileError> {
-    let mut resources = HashMap::new();
+pub async fn load_tilemap() -> Result<Map, Error> {
+    let dungeon_tileset = load_texture("./resources/tileset.png").await?;
+    let collision_tileset = load_texture("./resources/collision_graphic.png").await?;
+    dungeon_tileset.set_filter(FilterMode::Nearest);
 
-    resources.insert("wall", load_texture("../resources/wall.png").await?);
-    resources.insert("floor", load_texture("../resources/floor.png").await?);
-    resources.insert("player", load_texture("../resources/player.png").await?);
+    let tiled_map_json = load_string("./resources/tilemap.tmj").await?;
 
-    Ok(resources)
+    let map = macroquad_tiled::load_map(
+        &tiled_map_json, 
+        &[("tileset.png", dungeon_tileset), ("collision_graphic.png", collision_tileset)], 
+        &[]
+    ).expect("failed to load map");
+
+    Ok(map)
 }

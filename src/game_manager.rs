@@ -1,4 +1,6 @@
-use super::{GameObject, Resources, menu::Menu};
+use macroquad_tiled::Map;
+
+use super::{GameObject, menu::Menu};
 
 pub struct GameManager {
     state: Box<dyn GameObject>,
@@ -13,18 +15,14 @@ impl GameManager {
 }
 
 impl GameObject for GameManager {
-    fn input(&mut self) -> Option<Box<dyn GameObject>> {
-        if let Some(new_state) = self.state.input() {
+    fn update(&mut self, map: &Map) -> Option<Box<dyn GameObject>> {
+        if let Some(new_state) = self.state.update(map) {
             self.state = new_state;
         }
         None
     }
-
-    fn update(&self) {
-        self.state.update(); 
-    }
     
-    fn draw(&self, resources: &Resources) {
-        self.state.draw(resources);
+    fn draw(&self, map: &Map) {
+        self.state.draw(map);
     }
 }
