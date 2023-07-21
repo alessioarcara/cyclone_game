@@ -4,8 +4,7 @@ pub mod player;
 use self::player::Player;
 
 use super::GameObject;
-use game_entity::Position;
-use macroquad::prelude::Rect;
+use macroquad::prelude::*;
 use macroquad_tiled::Map;
 
 pub struct Game {
@@ -29,7 +28,7 @@ impl Game  {
 
         Self {
             // world_entities,
-            player: Player { position: Position(160, 160, 1) }
+            player: Player::new(160., 160.)
         }
     }
 }

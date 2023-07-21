@@ -2,9 +2,6 @@
 
 // use super::GameObject;
 
-#[derive(Debug)]
-pub struct Position (pub usize, pub usize, pub usize);
-
 //pub struct Entity {
 //    pub position: Position,
 //    pub kind: &'static str
