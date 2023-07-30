@@ -1,6 +1,5 @@
-use super::{GameObject, game::Game};
+use super::{GameObject, Resources, Map, game::Game};
 use macroquad::prelude::*;
-use macroquad_tiled::Map;
 
 enum MenuOption {
     HostGame,
@@ -44,7 +43,7 @@ impl GameObject for Menu {
         None
     }
 
-    fn draw(&self, _map: &Map) {
+    fn draw(&self, resources: &Resources ,_map: &Map) {
         clear_background(BLACK);
 
         let (screen_width, screen_height) = (screen_width(), screen_height());
