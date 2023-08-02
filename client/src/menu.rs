@@ -43,7 +43,7 @@ impl GameObject for Menu {
         None
     }
 
-    fn draw(&self, resources: &Resources ,_map: &Map) {
+    fn draw(&self, _resources: &Resources ,_map: &Map) {
         clear_background(BLACK);
 
         let (screen_width, screen_height) = (screen_width(), screen_height());
