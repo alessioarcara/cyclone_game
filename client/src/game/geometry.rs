@@ -4,9 +4,11 @@ pub enum Geometry {
 }
 
 pub trait Collidable {
+    fn is_colliding(&self) -> bool;
+    fn set_is_colliding(&mut self, is_colliding: bool);
     fn hitbox(&self) -> Geometry;
-    fn overlaps(&self, other: &dyn Collidable) -> bool {
-        match (self.hitbox(), other.hitbox()) {
+    fn overlaps(&self, other_hitbox: Geometry) -> bool {
+        match (self.hitbox(), other_hitbox) {
             (Geometry::Circle(x1, y1, r1), Geometry::Circle(x2, y2, r2)) => {
                 let dist_squared = (x1 - x2).powf(2.) + (y1 - y2).powf(2.);
                 dist_squared < (r1 + r2).powf(2.)

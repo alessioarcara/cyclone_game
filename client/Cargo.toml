@@ -13,5 +13,5 @@ macroquad = "0.4"
 macroquad-tiled = "0.2"
 matchbox_socket = "0.6.1"
 serde = "1.0.180"
-slotmap = "1.0.6"
+slotmap = { version = "1.0.6", features = ["serde"] }
 uuid = "1.4.1"

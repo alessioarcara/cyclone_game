@@ -15,6 +15,12 @@ pub trait GameObject {
     fn draw(&self, resources: &Resources, map: &Map);
 }
 
+impl dyn GameObject {
+    unsafe fn downcast<T>(&self) -> &T { 
+        &*(self as *const dyn GameObject as *const T)
+    }
+}
+
 pub async fn load_resources() -> Result<Resources, Error> {
    let mut resources = HashMap::new(); 
 

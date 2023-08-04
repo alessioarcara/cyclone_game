@@ -1,7 +1,8 @@
 
 use macroquad::prelude::*;
 
-use super::{GameObject, Resources, Map, player::PlayerPosition};
+use super::{Map, PlayerPosition};
+use crate::{GameObject, Resources};
 
 pub struct Weapon {
     player_position: PlayerPosition,
