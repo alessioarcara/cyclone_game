@@ -15,3 +15,4 @@ matchbox_socket = "0.6.1"
 serde = "1.0.180"
 slotmap = { version = "1.0.6", features = ["serde"] }
 uuid = "1.4.1"
+aalgebra = { path = "../../aalgebra/" }

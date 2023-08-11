@@ -22,11 +22,14 @@ impl dyn GameObject {
 }
 
 pub async fn load_resources() -> Result<Resources, Error> {
-   let mut resources = HashMap::new(); 
+   let resources = HashMap::from([
+        ("weapon_sword", load_texture("./client/resources/weapon_sword_wooden.png").await?),
+        ("player_anim", load_texture("./client/resources/knight_m_anim.png").await?),
+    ]); 
 
-    let sword_texture = load_texture("./client/resources/weapon_sword_wooden.png").await?;
-
-    resources.insert("weapon_sword", sword_texture);
+    for resource in resources.values() {
+        resource.set_filter(macroquad::texture::FilterMode::Nearest);
+    }
 
     Ok(resources)
 }

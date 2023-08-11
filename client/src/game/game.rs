@@ -88,7 +88,7 @@ impl<'a> Game<'a>  {
     fn create_player(&mut self, player_key: Uuid, x: f32, y: f32) {
         let pos = Rc::new(RefCell::new(Vec2::new(x, y)));
         // TODO: Load weapon attributes from a JSON file
-        let weapon = Weapon::new(pos.clone(), Vec2::new(30., 10.), 2. * PI / 180.);
+        let weapon = Weapon::new(pos.clone(), 30., 10., 2. * PI / 180.);
         let player = Rc::new(RefCell::new(Player::new(pos.clone(), weapon))); 
         self.entities.insert(player_key, player.clone());
         self.collidables.push(player.clone());
@@ -106,7 +106,7 @@ impl<'a> Game<'a>  {
                 let mut collidable_i = self.collidables[i].borrow_mut();
                 let mut collidable_j = self.collidables[j].borrow_mut();
 
-                if collidable_i.overlaps(collidable_j.hitbox()) {
+                if collidable_i.overlaps(&collidable_j.hitbox()) {
                     collidable_i.set_is_colliding(true);
                     collidable_j.set_is_colliding(true);
                 }
