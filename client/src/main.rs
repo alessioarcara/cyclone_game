@@ -1,17 +1,18 @@
-use std::error::Error;
-use client::{GameObject, GameManager, Map, load_resources};
-use macroquad::prelude::*;
+mod camera;
+mod player;
 
-#[macroquad::main("Cyclone Combat")]
-async fn main() -> Result<(), Box<dyn Error>> {
-    let resources = load_resources().await?;
-    let map = Map::new().await?;
-    let mut manager = GameManager::new();
+use bevy::prelude::*;
 
-    loop {
-        manager.update(&map);
-        manager.draw(&resources, &map);
-        next_frame().await;
-    } 
+use camera::CameraPlugin;
+use player::PlayerPlugin;
+
+fn main() {
+    App::new()
+        // Bevy built-ins
+        .insert_resource(ClearColor(Color::rgb(0.1,0.0,0.15)))
+        // User configured plugins.
+        .add_plugins(PlayerPlugin)
+        .add_plugins(CameraPlugin)
+        .add_plugins(DefaultPlugins)
+        .run();
 }
-
