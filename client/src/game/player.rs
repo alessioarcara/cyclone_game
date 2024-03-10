@@ -1,4 +1,6 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, utils::warn};
+
+use crate::GameState;
 
 // leverage predefined bevy built-in
 #[derive(Component, Debug)]
@@ -22,8 +24,8 @@ pub struct PlayerPlugin;
 
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Startup, spawn_player);
-        app.add_systems(Update, (animate_sprite, move_player));
+        app.add_systems(OnEnter(GameState::InGame), spawn_player);
+        app.add_systems(Update, (animate_sprite, move_player).run_if(in_state(GameState::InGame)));
     }
 }
 
